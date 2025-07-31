@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         resultsContainer.style.display = 'block';
+        document.getElementById('followup-message').style.display = 'block';
     });
 
     // Show the first question initially
