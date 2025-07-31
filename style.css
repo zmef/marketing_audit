@@ -1,31 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
+
+:root {
+    --green-light: #7DE282;
+    --green-dark: #1E6B03;
+    --soft-clay: #DDB7A0;
+    --dusty-lavender: #C3B4C2;
+    --warm-sand: #F4ECE2;
+    --soft-charcoal: #3A3A3A;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f4f7f9;
-    color: #333;
+    font-family: 'Playfair Display', serif;
+    background-color: var(--warm-sand);
+    color: var(--soft-charcoal);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
+    letter-spacing: 0.02em;
 }
 
 #quiz-container, #results-container {
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(30, 107, 3, 0.06);
     padding: 30px;
     width: 100%;
     max-width: 600px;
 }
 
 h1, h2 {
-    color: #2c3e50;
+    font-family: 'Playfair Display', serif;
+    color: var(--green-dark);
     text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 h2 {
-    border-bottom: 1px solid #ecf0f1;
+    border-bottom: 1px solid var(--dusty-lavender);
     padding-bottom: 10px;
     font-size: 1.2em;
 }
@@ -42,20 +57,23 @@ h2 {
     font-size: 1.1em;
     font-weight: 500;
     margin-bottom: 20px;
+    color: var(--soft-charcoal);
 }
 
 .question-block label {
     display: block;
-    background-color: #ecf0f1;
+    background-color: var(--soft-clay);
     padding: 12px 15px;
     margin-bottom: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 .question-block label:hover {
-    background-color: #dfe6e9;
+    background-color: var(--green-light);
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -68,7 +86,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 #next-btn, #submit-btn {
-    background-color: #3498db;
+    background-color: var(--green-dark);
     color: white;
     border: none;
     padding: 12px 25px;
@@ -76,20 +94,49 @@ input[type="radio"], input[type="checkbox"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
 #next-btn:hover, #submit-btn:hover {
-    background-color: #2980b9;
+    background-color: var(--green-light);
+    color: var(--green-dark);
 }
 
 #results-container h3 {
     margin-top: 30px;
+    color: var(--green-dark);
+    font-weight: 600;
 }
 
 #suggestions li {
-    background-color: #e8f6fd;
-    border-left: 4px solid #3498db;
+    background-color: var(--dusty-lavender);
+    border-left: 4px solid var(--soft-clay);
     padding: 15px;
     margin-bottom: 10px;
     list-style-type: none;
+    color: var(--soft-charcoal);
+    font-size: 1em;
+    font-weight: 400;
+}
+
+#download-pdf-btn {
+    background-color: var(--green-dark);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-top: 20px;
+}
+
+#download-pdf-btn:hover {
+    background-color: var(--green-light);
+    color: var(--green-dark);
 }

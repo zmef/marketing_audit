@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-container');
     const scoreSpan = document.getElementById('score');
     const suggestionsUl = document.getElementById('suggestions');
+    const downloadPdfBtn = document.getElementById('download-pdf-btn');
 
     let currentQuestionIndex = 0;
     let score = 0;
@@ -89,6 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Display results
         scoreSpan.textContent = score.toFixed(1);
 
+        // Clear previous suggestions
+        suggestionsUl.innerHTML = '';
+
         if (suggestionsToShow.size === 0) {
             const li = document.createElement('li');
             li.textContent = "Great job! Your online marketing presence is strong. Keep up the consistent effort.";
@@ -106,4 +110,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show the first question initially
     showQuestion(0);
+
+    // PDF generation
+    downloadPdfBtn.addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Title
+        doc.setFontSize(18);
+        doc.text('Marketing Audit Results', 10, 15);
+
+        // Score
+        doc.setFontSize(14);
+        doc.text(`Your Score: ${scoreSpan.textContent} / 15`, 10, 30);
+
+        // Suggestions
+        doc.setFontSize(12);
+        doc.text('Here are some suggestions to improve your marketing:', 10, 45);
+
+        // Gather suggestions
+        const suggestionItems = Array.from(suggestionsUl.querySelectorAll('li'));
+        let y = 55;
+        suggestionItems.forEach((li, idx) => {
+            const text = li.textContent;
+            doc.text(`- ${text}`, 12, y);
+            y += 10;
+            if (y > 280) { // Avoid bottom margin
+                doc.addPage();
+                y = 20;
+            }
+        });
+
+        doc.save('marketing_audit_results.pdf');
+    });
 });

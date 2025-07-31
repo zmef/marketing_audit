@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketing Audit Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Add jsPDF CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -109,6 +111,7 @@
         <p>Your Score: <span id="score"></span> / 15</p>
         <h3>Here are some suggestions to improve your marketing:</h3>
         <ul id="suggestions"></ul>
+        <button id="download-pdf-btn" style="margin-top:20px;">Download PDF</button>
     </div>
 
     <script src="script.js"></script>
