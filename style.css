@@ -9,6 +9,16 @@
     --soft-charcoal: #3A3A3A;
 }
 
+/* Add compatibility improvements */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+* {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
 body {
     font-family: 'Playfair Display', serif;
     background-color: var(--warm-sand);
