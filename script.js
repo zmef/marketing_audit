@@ -111,34 +111,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the first question initially
     showQuestion(0);
 
-    // PDF generation
+    // PDF generation (with text wrapping)
     downloadPdfBtn.addEventListener('click', () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
+        // Setup for text wrapping
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 12;
+        const maxLineWidth = pageWidth - margin * 2;
+
         // Title
         doc.setFontSize(18);
-        doc.text('Marketing Audit Results', 10, 15);
+        doc.text('Marketing Audit Results', margin, 15);
 
         // Score
         doc.setFontSize(14);
-        doc.text(`Your Score: ${scoreSpan.textContent} / 15`, 10, 30);
+        doc.text(`Your Score: ${scoreSpan.textContent} / 15`, margin, 30);
 
         // Suggestions
         doc.setFontSize(12);
-        doc.text('Here are some suggestions to improve your marketing:', 10, 45);
+        doc.text('Here are some suggestions to improve your marketing:', margin, 45);
 
         // Gather suggestions
         const suggestionItems = Array.from(suggestionsUl.querySelectorAll('li'));
         let y = 55;
+
         suggestionItems.forEach((li, idx) => {
-            const text = li.textContent;
-            doc.text(`- ${text}`, 12, y);
-            y += 10;
-            if (y > 280) { // Avoid bottom margin
-                doc.addPage();
-                y = 20;
-            }
+            const text = `- ${li.textContent}`;
+            const lines = doc.splitTextToSize(text, maxLineWidth);
+            lines.forEach(line => {
+                doc.text(line, margin, y);
+                y += 10;
+                if (y > 280) { // Avoid bottom margin
+                    doc.addPage();
+                    y = 20;
+                }
+            });
         });
 
         doc.save('marketing_audit_results.pdf');
